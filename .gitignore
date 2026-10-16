@@ -4,6 +4,10 @@
 .env
 !packages/prisma/.env
 
+# local credentials / secrets notes
+.credentials-*.md
+supabase-creds.txt
+
 # dependencies
 node_modules
 .pnp
@@ -117,3 +121,10 @@ agents/devin-knowledge.json
 
 # pagefind
 _pagefind/
+
+# backup local dos logos originais do cal.com
+apps/web/public/_calcom-backup/
+
+# segredos de producao gerados localmente
+.prod-*
+

@@ -2,7 +2,7 @@
 services:
   db:
     image: postgres:18
-    restart: always
+    restart: "no"
     container_name: integration-tests-prisma
     ports:
       - "5433:5432"
