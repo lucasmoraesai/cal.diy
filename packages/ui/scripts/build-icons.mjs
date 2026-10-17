@@ -135,7 +135,13 @@ async function writeIfChanged(filepath, newContent) {
     .catch(() => "");
   if (currentContent === newContent) return false;
   await fsExtra.writeFile(filepath, newContent, "utf8");
-  await $`node ${biomeBin} format --write ${filepath}`;
+  // Biome ignores `public/` via biome.json, so formatting this generated sprite is
+  // best-effort. A non-zero exit here must not fail the build.
+  try {
+    await $`node ${biomeBin} format --write ${filepath}`;
+  } catch {
+    // ignore: the sprite is already written and formatting is cosmetic
+  }
   return true;
 }
 
