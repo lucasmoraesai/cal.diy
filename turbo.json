@@ -322,7 +322,8 @@
     },
     "@calcom/prisma#build": {
       "cache": false,
-      "dependsOn": ["post-install"]
+      "dependsOn": ["post-install"],
+      "env": ["SKIP_DB_MIGRATIONS", "DATABASE_URL", "DATABASE_DIRECT_URL"]
     },
     "@calcom/prisma#db-migrate": {
       "cache": false,
