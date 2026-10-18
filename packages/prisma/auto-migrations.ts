@@ -43,6 +43,10 @@ async function main(): Promise<void> {
 }
 
 main().catch((e) => {
-  console.error(e.stdout || e.stderr || e.message);
+  // Surface every channel: the raw message plus captured output. Relying on
+  // `||` hid real build failures whenever stdout was an empty string.
+  console.error("Migration step failed:", e?.message ?? e);
+  if (e?.stdout) console.error("stdout:\n" + e.stdout);
+  if (e?.stderr) console.error("stderr:\n" + e.stderr);
   process.exit(1);
 });
