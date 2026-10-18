@@ -4,7 +4,9 @@ import { promisify } from "node:util";
 
 import { isPrismaAvailableCheck } from "./is-prisma-available-check";
 
-dotEnv.config({ path: "../../.env" });
+// The root .env only exists for local development. On a build platform (Vercel)
+// it is intentionally absent, so dotenv must not be allowed to throw here.
+dotEnv.config({ path: "../../.env", quiet: true });
 
 const exec = promisify(execCb);
 
